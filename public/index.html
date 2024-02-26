@@ -1,10 +1,29 @@
 <!DOCTYPE html>
-<html lang="">
+<!--[if lt IE 7]>
+  <p>You are using an <strong>outdated</strong> browser. Please <a href="/">upgrade your browser</a> to improve your experience.</p>
+<![endif]-->
+<html xml:lang="ru" lang="ru">
   <head>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <!-- <meta http-equiv="Content-Security-Policy" content="connect-src 'self' https://api.spotify.com https://accounts.spotify.com https://spotify.com https://open.spotify.com"> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="translate">
+    <meta name="author" content="Vkidik">
+    <meta property="og:site_name" content="Pace Music">
+    <meta property="og:title" content="Pace Music"/>
+    <meta property="og:description" content="Синхронизация музыки поднимет ее на самый высокий уровень!">
+    <meta property="og:image" content="<%= BASE_URL %>icons/og-img.png">
+    <meta name="description" content="Синхронизация музыки поднимет ее на самый высокий уровень!">
+    <meta name="keywords" content="Pace Music, Пейс мьюзие, Пейс мюзик, Пейс, Pace, Music">
+    <link rel="icon" href="<%= BASE_URL %>icons/favicon.ico">
+    <link rel="icon" href="<%= BASE_URL %>icons/favicon.svg">
+    <link rel="icon" type="image/svg+xml" href="<%= BASE_URL %>icons/favicon.svg">
+    <meta name="msapplication-TileColor" content="#0A0A0A">
+    <meta name="msapplication-TileImage" content="<%= BASE_URL %>icons/msapplication-icon-144x144.png">
+    <meta name="theme-color" content="#0A0A0A"> 
     <title><%= htmlWebpackPlugin.options.title %></title>
   </head>
   <body>
@@ -12,6 +31,5 @@
       <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
     </noscript>
     <div id="app"></div>
-    <!-- built files will be auto injected -->
   </body>
 </html>

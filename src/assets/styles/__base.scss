@@ -1,0 +1,72 @@
+@import './_fonts', './_vars', './_animation';
+
+*, 
+*::before, 
+*::after{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    border: none;
+    outline: none;
+    text-decoration: none;
+    list-style-type: none;
+}
+
+html, 
+body{
+    width: 100%;
+    min-height: 100dvh;
+    height: auto;
+    background: $body-black-background;
+    font-size: $font-size-main;
+    font-weight: 300;
+    font-family: $font-Inter-sans-serif;
+    color: $default-white-color-100;
+    background: #0A0A0A;
+}
+
+body{
+    display: flex;
+    &.hidden{
+        overflow: hidden;
+    }
+}
+
+#app{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+#application{
+    flex: 1;
+    display: flex;
+    padding: $distance-between-blocks;
+    padding-top: 0;
+    flex-direction: row;
+    gap: $distance-between-blocks;
+}
+
+aside.aside{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: $distance-between-blocks;
+}
+
+section#page{
+    flex: 1;
+    border: 1px solid #FFF;
+}
+
+a{
+    color: inherit;
+    cursor: pointer;
+}
+
+i, svg, img, .footer{
+    -moz-user-select: none; 
+    -webkit-user-select: none; 
+    -ms-user-select: none; 
+    user-select: none;
+}

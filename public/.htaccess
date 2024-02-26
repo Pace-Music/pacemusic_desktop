@@ -1,0 +1,12 @@
+RewriteEngine On
+RewriteBase /
+
+# Остальные правила
+RewriteRule ^index\.html$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index.html [L]
+
+# Добавляем правило для отправки 404 ошибки для /projects/project/
+ErrorDocument 403 /404
+ErrorDocument 404 /404
