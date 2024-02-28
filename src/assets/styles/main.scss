@@ -1,1 +1,13 @@
 @import './_base';
+
+.section{
+    display: flex;
+    flex-direction: column;
+    gap: calc($distance-between-blocks * 2.5);
+    width: 100%;
+    
+    &-name{
+        margin-bottom: calc($distance-between-blocks * 1.5);
+        margin-left: calc($distance-between-blocks * 0.5);
+    }
+}

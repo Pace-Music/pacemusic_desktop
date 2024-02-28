@@ -1,0 +1,12 @@
+@media screen and (min-width: 1024px){
+    #links{
+        display: none;
+        width: 0;
+    }
+}
+@media screen and (min-width: 1280px){
+    #links{
+        display: flex;
+        width: 200px;
+    }
+}

@@ -13,6 +13,9 @@
   },
   "main": "background.js",
   "dependencies": {
+    "@octokit/core": "^6.0.1",
+    "@octokit/rest": "^20.0.2",
+    "axios": "^1.6.7",
     "core-js": "^3.8.3",
     "path-browserify": "^1.0.1",
     "vue": "^3.2.13",
@@ -23,6 +26,7 @@
   "devDependencies": {
     "@babel/core": "^7.12.16",
     "@babel/eslint-parser": "^7.12.16",
+    "@babel/plugin-transform-class-static-block": "^7.23.4",
     "@vue/cli-plugin-babel": "~5.0.0",
     "@vue/cli-plugin-eslint": "~5.0.0",
     "@vue/cli-plugin-router": "~5.0.0",

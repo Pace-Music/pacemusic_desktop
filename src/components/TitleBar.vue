@@ -3,18 +3,18 @@
         <div class="sidebar__btns">
             <button class="sidebar__btns-btn" @click="handleButton('MINIMIZE')">
                 <svg width="72" height="72" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <rect x="20" y="34" width="32" height="3" rx="1.5" fill="#7E51FD"/>
-                </svg>                                     
+                    <rect x="22" y="34" width="30" height="3" rx="1.5" fill="inherit" stroke="none"/>
+                </svg>             
             </button>
             <button class="sidebar__btns-btn" @click="handleButton('MAXIMIZE')">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <rect x="6.2" y="6.2" width="11.1" height="11.1" rx="1.93889" stroke="#7E51FD" stroke-width="1.5"/>
+                    <rect x="6.2" y="6.2" width="11.1" height="11.1" rx="1.93889" fill="none" stroke="inherit" stroke-width="1.5"/>
                 </svg>                                                                                          
             </button>
             <button class="sidebar__btns-btn close" @click="handleButton('CLOSE')">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <rect x="4.55811" y="18.4142" width="19.5955" height="1.45332" rx="0.726659" transform="rotate(-45 4.55811 18.4142)" fill="#7E51FD"/>
-                    <rect x="5.58582" y="4.55811" width="19.5955" height="1.45332" rx="0.726659" transform="rotate(45 5.58582 4.55811)" fill="#7E51FD"/>
+                <svg style="transform: scale(0.9);" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="4.55811" y="18.4142" width="19.5955" height="1.45332" rx="0.726659" stroke="none" transform="rotate(-45 4.55811 18.4142)" fill="inherit"/>
+                    <rect x="5.58582" y="4.55811" width="19.5955" height="1.45332" rx="0.726659" stroke="none" transform="rotate(45 5.58582 4.55811)" fill="inherit"/>
                 </svg>                      
             </button>
         </div>
@@ -72,6 +72,12 @@ export default {
                 background: transparent;
                 color: #A186EE;
                 -webkit-app-region: no-drag;
+                cursor: pointer;
+
+                & svg{
+                    fill: $default-white-color-100;
+                    stroke: $default-white-color-100;
+                }
 
                 &:hover{
                     background: #FFFFFF22;

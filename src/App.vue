@@ -1,30 +1,42 @@
 <script>
-  import Loading from "../src/components/Loader.vue";
-  import TitleBar from "../src/components/TitleBar.vue";
-  import MusicPlayer from "./components/MusicPlayer.vue";
-  import Navigation from "./components/Navigation.vue";
+  import Loader from '@/components/Loader.vue'
+  import TitleBar from '@/components/TitleBar.vue'
+  import MusicPlayer from '@/components/MusicPlayer.vue'
+  import Navigation from '@/components/Navigation.vue'
+  import Links from '@/components/Links.vue'
+  import Error from '@/views/Error.vue'
+  import Gradient from './components/Gradient.vue'
   
   export default {
     name:'MainApp',
     components: {
-        Loading,
-        TitleBar,
-        Navigation,
-        MusicPlayer
-    },
+    Loader,
+    TitleBar,
+    Navigation,
+    MusicPlayer,
+    Error,
+    Links,
+    Gradient,
+}
   };
 </script>
 
 <template>
-  <Loading></Loading>
+  <Loader></Loader>
   <TitleBar></TitleBar>
-  <div id="application">
-    <Navigation></Navigation>
-    <aside class="aside">
-      <section id="page">
-        <RouterView/>
-      </section>
+  <Gradient></Gradient>
+  <div id="application" v-if="!$route.path.startsWith('/error')">
+    <div id="main-app">
+      <aside class="aside">
+        <Navigation>
+        </Navigation>
+        <section id="page">
+          <RouterView/>
+        </section>
+      </aside>
       <MusicPlayer></MusicPlayer>
-    </aside>
+    </div>
+    <Links></Links>
   </div>
+  <Error v-if="$route.path.startsWith('/error')"></Error>
 </template>

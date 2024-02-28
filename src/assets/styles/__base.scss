@@ -1,4 +1,4 @@
-@import './_fonts', './_vars', './_animation';
+@import './_fonts', './_vars', './_animation', './_adaptive';
 
 *, 
 *::before, 
@@ -22,7 +22,6 @@ body{
     font-weight: 300;
     font-family: $font-Inter-sans-serif;
     color: $default-white-color-100;
-    background: #0A0A0A;
 }
 
 body{
@@ -41,27 +40,109 @@ body{
 #application{
     flex: 1;
     display: flex;
+    flex-direction: row;
     padding: $distance-between-blocks;
     padding-top: 0;
-    flex-direction: row;
+    z-index: 2;
     gap: $distance-between-blocks;
+
+    & #main-app{
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: $distance-between-blocks;
+    }
+
+    #links{
+        flex: none;
+        height: 100%;
+        box-shadow: inset 0px 4px 18px rgba(0, 0, 0, 0.3), inset 0px 1px 30px rgba(78, 74, 74, 0.2);
+        backdrop-filter: blur(60px);
+        background: $body-black-background;
+        border-radius: 1rem;
+        padding: calc($distance-between-blocks * 0.9);
+    }
 }
 
 aside.aside{
     flex: 1;
     display: flex;
-    flex-direction: column;
     gap: $distance-between-blocks;
 }
 
 section#page{
     flex: 1;
-    border: 1px solid #FFF;
+    height: 100%;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    border-radius: 1rem;
+    box-shadow: inset 0px 4px 18px rgba(0, 0, 0, 0.3), inset 0px 1px 30px rgba(78, 74, 74, 0.2);
+    backdrop-filter: blur(60px);
+    background: $body-black-background;
+    gap: calc($distance-between-blocks * 2);
+    overflow-y: auto;
+    
+    #app-sect{
+        position: absolute;
+        padding: calc($distance-between-blocks * 2.5);
+        z-index: 2;
+        min-height: 100%;
+        height: auto;
+        width: 100%;
+    }
+
+    #commits{
+        position: absolute;
+        z-index: 3;
+        min-height: 100%;
+        height: auto;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+
+        & .background{
+            z-index: 4;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            background-color: $default-black-color-75;
+            filter: blur(60px) brightness(0.5);
+            box-shadow: inset 1px 20px 20px 20px #0A0A0A;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        & ul{
+            z-index: 5;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            padding: calc($distance-between-blocks * 3);
+            font-size: calc($font-size-relative * 1.2);
+            margin-bottom: calc($distance-between-blocks * 1.75);
+
+            & li:first-child{
+                margin-bottom: calc($distance-between-blocks * 0.5);
+                font-size: calc($font-size-relative * 1.5);
+            }
+
+            & a:hover{
+                display: block;
+                transform: scale(1.2);
+                color: $default-white-color-75;
+            }
+        }
+    }
 }
 
 a{
     color: inherit;
     cursor: pointer;
+    user-select: none;
 }
 
 i, svg, img, .footer{

@@ -1,24 +1,21 @@
 <script>
-    // import icon from '@/assets/icons/icon.vue'
-
     export default{
-        name: "LoaderComponent", 
-        components: {
-            // icon
-        },
+        name: "LoaderComponent",
         mounted() {
-            console.log("Loading is ending...");
             setTimeout(() => {
-                if (this.$refs.preloader) {
-                    document.querySelector('.container_loading').classList.add('loading__end');
-                    setTimeout(() => {
-                        document.body.classList.remove('hidden');
-                        if (document.querySelector('.container_loading')) {
-                            document.querySelector('.container_loading').remove();
-                        }
-                    }, 1250);
-                }
-            }, 2000);
+                console.log("Loading is ending...");
+                setTimeout(() => {
+                    if (this.$refs.preloader) {
+                        document.querySelector('.container_loading').classList.add('loading__end');
+                        setTimeout(() => {
+                            document.body.removeAttribute("class")
+                            if (document.querySelector('.container_loading')) {
+                                document.querySelector('.container_loading').remove();
+                            }
+                        }, 1000);
+                    }
+                }, 5000);
+            }, 1000);
         },
     }
 </script>
@@ -26,24 +23,28 @@
 
 <template>
     <div class="container_loading" ref="preloader">
-        <!-- <icon class="container_loading-icon"></icon> -->
+        <video 
+            class="container_loading-loader" 
+            ref="loader" 
+            src="../assets/videos/Pace_music-loader.mp4"
+            autoplay></video>
     </div>
 </template>
 
 <style lang="scss" scoped>
     .container_loading{
-        /*background: ;*/
+        flex: 1;
         position: fixed;
-        width: 100%;
-        height: 100%;
+        width: 100vw;
+        height: 100vh;
         display: flex;
         align-items: center;
         justify-content: center;
+        z-index: 10000;
         opacity: 1;
 
-        &-icon{
-            width: 15%;
-            height: 15%;
+        &-loader{
+            height: 100%;
         }
     }
 
