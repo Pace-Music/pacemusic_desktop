@@ -26,6 +26,7 @@
         </div>
         <div class="bottom">
             <BetaBtn></BetaBtn>
+            <p>Версия: {{ this.$store.getters.getAppVersion }}</p>
             <div class="user">
                 <RouterLink to="/user" class="user__icon">
                     <img src="https://avatars.dzeninfra.ru/get-zen_doc/271828/pub_6561d83088410d6f4a17dfff_6561ee656e6f8b6285a47d48/scale_1200" alt="User" class="user__icon-img">

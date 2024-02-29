@@ -118,22 +118,16 @@ section#page{
 
         & ul{
             z-index: 5;
+            max-width: 100%;
             display: flex;
             flex-direction: column;
             align-items: flex-start;
             padding: calc($distance-between-blocks * 3);
-            font-size: calc($font-size-relative * 1.2);
-            margin-bottom: calc($distance-between-blocks * 1.75);
+            font-size: calc($font-size-relative * 1);
 
             & li:first-child{
                 margin-bottom: calc($distance-between-blocks * 0.5);
                 font-size: calc($font-size-relative * 1.5);
-            }
-
-            & a:hover{
-                display: block;
-                transform: scale(1.2);
-                color: $default-white-color-75;
             }
         }
     }
