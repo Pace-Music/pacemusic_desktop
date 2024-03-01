@@ -10,14 +10,14 @@
   export default {
     name:'MainApp',
     components: {
-    Loader,
-    TitleBar,
-    Navigation,
-    MusicPlayer,
-    Error,
-    Links,
-    Gradient,
-}
+        Loader,
+        TitleBar,
+        Navigation,
+        MusicPlayer,
+        Error,
+        Links,
+        Gradient,
+    }
   };
 </script>
 
@@ -31,7 +31,9 @@
         <Navigation>
         </Navigation>
         <section id="page">
-          <RouterView/>
+          <div id="app-sect">
+            <RouterView/>
+          </div>
         </section>
       </aside>
       <MusicPlayer></MusicPlayer>

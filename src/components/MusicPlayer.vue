@@ -1,8 +1,8 @@
 <template>
-    <div class="player">
+    <div class="player" :style="`background: linear-gradient(transparent 0,rgba(0,0,0,.5) 100%), ${imageBackgroundColor}`">
         <div class="player__song">
             <div class="player__song-img">
-                <img src="https://image-cdn-ak.spotifycdn.com/image/ab67706c0000da84c906393cd082eb6c0a31a5ab" alt="Img" class="player__song-img-item">
+                <img crossorigin="anonymous" @load="getImageBackgroundColor" :src="imageUrl" alt="Img" class="player__song-img-item">
             </div>
             <div class="player__song-data">
                 <a href="" class="user__data-name"><h4 >Название песни</h4></a>
@@ -11,7 +11,7 @@
         </div>
 
         <div class="player__media">
-
+            <!-- https://image-cdn-ak.spotifycdn.com/image/ab67706c0000da84c906393cd082eb6c0a31a5ab -->
         </div>
     </div>
 </template>
@@ -19,6 +19,36 @@
 <script>
     export default {
         name: "MusicPlayerComponent",
+        data() {
+            return {
+                imageUrl: 'https://image-cdn-ak.spotifycdn.com/image/ab67706c0000da84c906393cd082eb6c0a31a5ab',
+                imageBackgroundColor: null
+            };
+        },
+        methods: {
+            getImageBackgroundColor(event) {
+                // Создаем виртуальный холст
+                const canvas = document.createElement('canvas');
+                const context = canvas.getContext('2d');
+
+                // Получаем ширину и высоту изображения
+                const width = event.target.width;
+                const height = event.target.height;
+
+                // Загружаем картинку на холст
+                context.drawImage(event.target, 0, 0, width, height);
+
+                // Получаем пиксель в координатах (0, 0) (левый верхний угол)
+                const pixelData = context.getImageData(0, 0, 1, 1).data;
+                console.log(pixelData);
+
+                // Преобразуем цвет в формат RGB
+                const color = `rgba(${pixelData[1]}, ${pixelData[2]}, ${pixelData[3]}, 0.${pixelData[0]})`;
+
+                // Устанавливаем цвет как задний фон
+                this.imageBackgroundColor = color;
+            },
+        }
     }
 </script>
 
@@ -28,7 +58,6 @@
         flex: none;
         width: 100%;
         height: 90px;
-        background: linear-gradient(transparent 0,rgba(0,0,0,.5) 100%),#0412786c;
         background-blend-mode: soft-light;
         mix-blend-mode: normal;
         backdrop-filter: blur(50px);

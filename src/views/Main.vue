@@ -1,10 +1,8 @@
 <template>
-    <div id="app-sect">
-        <Search></Search>
-        <section class="section" id="replay">
-            <h2 class="section-name">{{ getDay() }}</h2>
-        </section>
-    </div>
+    <Search></Search>
+    <section class="section" id="replay">
+        <h2 class="section-name">{{ getDay() }}</h2>
+    </section>
 </template>
 
 <script>

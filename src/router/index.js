@@ -24,6 +24,11 @@ const router = createRouter({
       component: () => import(/* webpackChunkName: "Search" */ '../views/Search.vue'),
     }, 
     {
+      path: '/settings',
+      name: 'Параметры настройки',
+      component: () => import(/* webpackChunkName: "Setting" */ '../views/Settings.vue'),
+    }, 
+    {
       path: '/user',
       name: '',
       component: () => import(/* webpackChunkName: "User" */ '../views/User.vue'),

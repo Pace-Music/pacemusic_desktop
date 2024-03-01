@@ -44,7 +44,6 @@
                                 this.$store.commit('setAppVersion', version)
                                 cnt += 1
                             }
-                            console.log(commitData.commit);
                             const commit = {
                                 version: version,
                                 info: parts,

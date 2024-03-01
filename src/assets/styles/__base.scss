@@ -60,7 +60,7 @@ body{
         backdrop-filter: blur(60px);
         background: $body-black-background;
         border-radius: 1rem;
-        padding: calc($distance-between-blocks * 0.9);
+        padding: calc($distance-between-blocks * 2.5)
     }
 }
 
@@ -91,6 +91,9 @@ section#page{
         min-height: 100%;
         height: auto;
         width: 100%;
+        gap: calc($distance-between-blocks * 2.5);
+        display: flex;
+        flex-direction: column;
     }
 
     #commits{
@@ -110,8 +113,6 @@ section#page{
             height: 100%;
             position: absolute;
             background-color: $default-black-color-75;
-            filter: blur(60px) brightness(0.5);
-            box-shadow: inset 1px 20px 20px 20px #0A0A0A;
             overflow: hidden;
             cursor: pointer;
         }

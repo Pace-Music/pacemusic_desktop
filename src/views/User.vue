@@ -1,10 +1,7 @@
 <template>
-    <div id="app-sect">
-        <section class="section" id="replay">
-            <h2 class="section-name">Пользователь</h2>
-        </section>
-        
-    </div>
+    <section class="section" id="replay">
+        <h2 class="section-name">Пользователь</h2>
+    </section>
 </template>
 
 <script>
