@@ -25,7 +25,7 @@
             </nav>
         </div>
         <div class="bottom">
-            <BetaBtn></BetaBtn>
+            <slot></slot>
             <p>Версия: {{ this.$store.getters.getAppVersion }}</p>
             <div class="user">
                 <RouterLink to="/user" class="user__icon">
@@ -44,7 +44,6 @@
     import Favorite from '@/assets/icons/favorite.vue';
     import Pace from '@/assets/icons/pace.vue';
     import Review from '@/assets/icons/review.vue';
-import BetaBtn from './BetaBtn.vue';
 
     export default {
         name: "NavigationComp",
@@ -52,7 +51,6 @@ import BetaBtn from './BetaBtn.vue';
     Pace,
     Review,
     Favorite,
-    BetaBtn
 },
         computed: {
                 isCurrentRoute() {

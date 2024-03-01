@@ -12,6 +12,17 @@
     list-style-type: none;
 }
 
+::-webkit-scrollbar {
+    width: 5px;
+}
+::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+::-webkit-scrollbar-thumb {
+    background-color: $default-grey-color-75;
+    border-radius: 2.5px;
+}
+
 html, 
 body{
     width: 100%;
@@ -82,7 +93,7 @@ section#page{
     backdrop-filter: blur(60px);
     background: $body-black-background;
     gap: calc($distance-between-blocks * 2);
-    overflow-y: auto;
+    overflow: hidden;
     
     #app-sect{
         position: absolute;
@@ -94,43 +105,7 @@ section#page{
         gap: calc($distance-between-blocks * 2.5);
         display: flex;
         flex-direction: column;
-    }
-
-    #commits{
-        position: absolute;
-        z-index: 3;
-        min-height: 100%;
-        height: auto;
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        justify-content: flex-start;
-
-        & .background{
-            z-index: 4;
-            width: 100%;
-            height: 100%;
-            position: absolute;
-            background-color: $default-black-color-75;
-            overflow: hidden;
-            cursor: pointer;
-        }
-
-        & ul{
-            z-index: 5;
-            max-width: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            padding: calc($distance-between-blocks * 3);
-            font-size: calc($font-size-relative * 1);
-
-            & li:first-child{
-                margin-bottom: calc($distance-between-blocks * 0.5);
-                font-size: calc($font-size-relative * 1.5);
-            }
-        }
+        overflow-y: auto;
     }
 }
 
