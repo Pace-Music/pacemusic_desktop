@@ -18,7 +18,7 @@
                     </li>
                     <li class="navigation__list-item">
                         <RouterLink class="navigation__list-item-href" to="/favorite">
-                           <Favorite class="nav_icon"></Favorite> Любимое
+                           <Favorite class="nav_icon"></Favorite> Коллекция
                         </RouterLink>
                     </li>
                 </ul>
@@ -121,6 +121,14 @@
                             & .nav_icon{
                                 opacity: 1;
                                 fill: #FFFFFF;
+                            }
+                        }
+
+                        &.router-link-active{
+                            color: rgb(255, 255, 255, 1);
+                            & .nav_icon{
+                                fill: #FFFFFF;
+                                opacity: 1;
                             }
                         }
                     }

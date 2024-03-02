@@ -3,7 +3,6 @@
   import TitleBar from '@/components/TitleBar.vue'
   import MusicPlayer from '@/components/MusicPlayer.vue'
   import Navigation from '@/components/Navigation.vue'
-  import Links from '@/components/Links.vue'
   import Error from '@/views/Error.vue'
   import Gradient from './components/Gradient.vue'
 import BetaModal from './components/BetaModal.vue'
@@ -21,7 +20,6 @@ import BetaModal from './components/BetaModal.vue'
     Navigation,
     MusicPlayer,
     Error,
-    Links,
     Gradient,
     BetaModal
 }
@@ -47,7 +45,6 @@ import BetaModal from './components/BetaModal.vue'
       </aside>
       <MusicPlayer></MusicPlayer>
     </div>
-    <Links></Links>
   </div>
   <Error v-if="$route.path.startsWith('/error')"></Error>
 </template>

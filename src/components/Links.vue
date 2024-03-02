@@ -21,6 +21,7 @@
                             <h4 class="account__title-name">{{ account.name }}</h4>
                         </div>
                     </div>
+                    <button class="account add_account"><h5>+</h5></button>
                 </div>
             </div>
         </div>
@@ -44,7 +45,7 @@
                     },
                     {
                         name: "Яндекс Музыка",
-                        icon: "https://music.yandex.ru/blocks/common/apple-touch.180x180.png",
+                        icon: "https://jobs.s3.yandex.net/public_services/one.png_eefec2c0278245cd8b89f91181221d32",
                     },
                     {
                         name: "Apple Music",
@@ -68,7 +69,6 @@
     @import "../assets/styles/_vars";
 
     #links{
-        display: flex;
         flex-direction: column;
         gap: calc($distance-between-blocks * 1.5);
         & .settings{
@@ -118,6 +118,7 @@
             position: relative;
 
             &__container{
+                width: 100%;
                 position: absolute;
                 overflow-y: auto;
                 display: flex;
@@ -135,20 +136,39 @@
 
                     & .account{
                         width: 100%;
-                        padding: calc($distance-between-blocks * 1.25) 0;
-                        background: $default-grey-color-75;
+                        padding: calc($distance-between-blocks * 1.375);
+                        background: $default-grey-color-50;
                         display: flex;
                         flex-direction: row;
                         align-items: center;
-                        justify-content: space-between;
+                        justify-content: flex-start;
+                        gap: $distance-between-blocks * 1.375;
                         overflow: hidden;
                         border-radius: $distance-between-blocks * 1.5;
+
+                        &.add_account{
+                            justify-content: center;
+                            margin-top: $distance-between-blocks * 1.375;
+                            box-shadow: inset 0px 4px 18px rgba(98, 98, 98, 0.3), inset 0px 1px 30px rgba(98, 98, 98, 0.3);
+                            color: $default-white-color-100;
+                            cursor: pointer;
+
+                            &:hover{
+                                background: $default-grey-color-75;
+                            }
+
+                            & h5{
+                                font-size: 24px;
+                                user-select: none;
+                            }
+                        }
 
                         &__icon{
                             height: 40px;
                             width: 40px;
-
+                            
                             &-item{
+                                user-select: none;
                                 width: inherit;
                                 height: inherit;
                             }

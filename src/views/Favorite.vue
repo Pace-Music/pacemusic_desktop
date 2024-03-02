@@ -1,7 +1,7 @@
 <template>
     <Search></Search>
     <section class="section" id="replay">
-        <h2 class="section-name">Любимые</h2>
+        <h2 class="section-name">{{ $route.name }}</h2>
     </section>
 </template>
 

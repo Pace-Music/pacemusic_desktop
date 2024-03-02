@@ -15,7 +15,7 @@ const router = createRouter({
     },   
     {
       path: '/favorite',
-      name: 'Любимое',
+      name: 'Коллекция',
       component: () => import(/* webpackChunkName: "Favorite" */ '../views/Favorite.vue'),
     }, 
     {
