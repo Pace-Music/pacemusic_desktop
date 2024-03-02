@@ -1,6 +1,5 @@
 <template>
     <section id="commits" v-if="show">
-        <div class="background" @click="closeModal" title="Закрыть просмотр версий"></div>
         <h4 class="commit__connect" v-if="loaded == false">Получение актуальных версий...</h4>
         <div v-else class="commit_container">
             <ul v-for="(commit, index) in commits" :key="index">
@@ -73,20 +72,11 @@ export default {
     z-index: 3;
     height: 100%;
     width: 100%;
+    background-color: $default-black-color-75;
 
     & .commit__connect{
         margin: calc($distance-between-blocks * 3);
         color: $default-white-color-100;
-    }
-
-    & .background{
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        z-index: 4;
-        background-color: $default-black-color-75;
-        overflow: hidden;
-        cursor: pointer;
     }
 
     & .commit_container{

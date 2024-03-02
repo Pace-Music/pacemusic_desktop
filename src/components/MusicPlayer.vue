@@ -1,5 +1,5 @@
 <template>
-    <div class="player" :style="`background: linear-gradient(transparent 0,rgba(0,0,0,.5) 100%), ${imageBackgroundColor}`">
+    <div class="player" :style="`background: linear-gradient(transparent -0px, rgba(255, 255, 255, 0.05) 100%), ${imageBackgroundColor}`">
         <div class="player__song">
             <div class="player__song-img">
                 <img crossorigin="anonymous" @load="getImageBackgroundColor" :src="imageUrl" alt="Img" class="player__song-img-item">

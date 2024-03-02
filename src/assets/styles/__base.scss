@@ -21,6 +21,12 @@
 ::-webkit-scrollbar-thumb {
     background-color: $default-grey-color-75;
     border-radius: 2.5px;
+    opacity: 0;
+    display: none;
+}
+
+:hover::-webkit-scrollbar-thumb {
+    display: block;
 }
 
 html, 
@@ -106,6 +112,15 @@ section#page{
         display: flex;
         flex-direction: column;
         overflow-y: auto;
+    }
+}
+
+.router-link-active{
+    color: rgb(255, 255, 255, 1);
+
+    & .nav_icon{
+        fill: #FFFFFF;
+        opacity: 1;
     }
 }
 
