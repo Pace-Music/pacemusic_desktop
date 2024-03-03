@@ -34,7 +34,7 @@ import BetaModal from './components/BetaModal.vue'
     <div id="main-app">
       <aside class="aside">
         <Navigation>
-          <btn class="btn btn-commits" @click="showModal = !showModal" title="Показать версии">Версии</btn>
+          <button class="btn btn-commits" @click="showModal = !showModal" title="Показать версии">Версии</button>
         </Navigation>
         <section id="page">
           <BetaModal ref="betaModal" :show="showModal" v-on:close="showModal = false"></BetaModal>
