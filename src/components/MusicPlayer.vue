@@ -43,6 +43,7 @@
 
 <script>
 import Love from '@/assets/icons/love.vue';
+const { CoreAPI } = require('@/coreAPI')
 
 export default {
     name: "MusicPlayerComponent",
@@ -52,41 +53,41 @@ export default {
             audioPlayer: null,
             currentTrackIndex: 0,
             tracks: [
-                {
-                    id: 1,
-                    imageUrl:"https://i.scdn.co/image/ab67706f0000000254473de875fea0fd19d39037",
-                    audioSource:"/music/Schizophrenia.mp3", 
-                    author:"Виктор Попов",
-                    name:"Schizophrenia",
-                },
-                {
-                    id: 2,
-                    imageUrl: 'https://i.scdn.co/image/ab67616d00001e02e89fb5002cc6bd0b275c2384',
-                    audioSource: "/music/Kishlak.mp3",
-                    author: "Кишлак",
-                    name: "Кодировка",
-                },
-                {
-                    id: 3,
-                    imageUrl: 'https://i.scdn.co/image/ab67616d00001e02806c160566580d6335d1f16c',
-                    audioSource: "/music/Stand.mp3",
-                    author: "Виктор Попов",
-                    name: "Stand",
-                },
-                {
-                    id: 4,
-                    imageUrl: 'https://i.scdn.co/image/ab67616d00004851b329c1c8e51a33111f1a94bc',
-                    audioSource: "/music/Summer-Waltz.mp3",
-                    author: "Виктор Попов",
-                    name: "Summer-Waltz",
-                },
-                {
-                    id: 4,
-                    imageUrl: 'https://i.scdn.co/image/ab67616d00004851b2b6670e3aca9bcd55fbabbb',
-                    audioSource: "/music/Start_(orchestra).mp3",
-                    author: "Виктор Попов",
-                    name: "Start_(orchestra)",
-                }
+                // {
+                //     id: 1,
+                //     imageUrl:"https://i.scdn.co/image/ab67706f0000000254473de875fea0fd19d39037",
+                //     audioSource:"/music/Schizophrenia.mp3", 
+                //     author:"Виктор Попов",
+                //     name:"Schizophrenia",
+                // },
+                // {
+                //     id: 2,
+                //     imageUrl: 'https://i.scdn.co/image/ab67616d00001e02e89fb5002cc6bd0b275c2384',
+                //     audioSource: "https://api.pacemusic.ru/music/Kishlak.mp3",
+                //     author: "Кишлак",
+                //     name: "Кодировка",
+                // },
+                // {
+                //     id: 3,
+                //     imageUrl: 'https://i.scdn.co/image/ab67616d00001e02806c160566580d6335d1f16c',
+                //     audioSource: "/music/Stand.mp3",
+                //     author: "Виктор Попов",
+                //     name: "Stand",
+                // },
+                // {
+                //     id: 4,
+                //     imageUrl: 'https://i.scdn.co/image/ab67616d00004851b329c1c8e51a33111f1a94bc',
+                //     audioSource: "/music/Summer-Waltz.mp3",
+                //     author: "Виктор Попов",
+                //     name: "Summer-Waltz",
+                // },
+                // {
+                //     id: 4,
+                //     imageUrl: 'https://i.scdn.co/image/ab67616d00004851b2b6670e3aca9bcd55fbabbb',
+                //     audioSource: "/music/Start_(orchestra).mp3",
+                //     author: "Виктор Попов",
+                //     name: "Start_(orchestra)",
+                // }
             ],
             musicPlayer: {
                 track: {},
@@ -111,10 +112,26 @@ export default {
         }
     },
     mounted() {
-        if (this.tracks.length > 0) {
-            this.musicPlayer.track = this.tracks[0];
-        }
-        this.initAudioPlayer();
+        CoreAPI.post('/auth/index.php', 'POST', {
+            action: "GET_TRACKS",
+        }, (data) => {
+            data.tracks.forEach(track => {
+                this.tracks.push(
+                    {
+                        id: track.id,
+                        imageUrl: track.poster_src,
+                        audioSource: track.audio_src,
+                        author: track.author,
+                        name: track.name
+                    }
+                )
+            });
+            
+            if (this.tracks.length > 0) {
+                this.musicPlayer.track = this.tracks[0];
+            }
+            this.initAudioPlayer();
+        });
     },
     beforeUnmount() {
         this.audioPlayer && this.audioPlayer.pause();
