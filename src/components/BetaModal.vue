@@ -4,7 +4,7 @@
         <div v-else class="commit_container">
             <ul v-for="(commit, index) in commits" :key="index">
                 <li class="app-version">
-                    <b>{{ commit.version === $store.getters.getAppVersion ? `${commit.version} - Текущая версия` : commit.version }}</b>
+                    <b>{{ commit.version === `v ${require('/package.json').version}` ? `${commit.version} - Текущая версия` : `${commit.version}` }}</b>
                 </li>
                 <li v-for="message in commit.info" :key="message">
                     <p>{{ message }}</p>
@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import axios from 'axios';
+import { appData } from '@/coreAPI/getData';
 
 export default {
     name: "BetaModalComp",
@@ -32,34 +32,22 @@ export default {
     methods: {
         getCommits() {
             if (this.commits.length === 0) {
-                axios.get('https://api.github.com/repos/vkidik/pace_music-desktop/commits')
-                .then(response => {
-                    const newCommits = response.data
-                    .filter(commitData => commitData.commit.message !== 'init')
-                    .map(commitData => {
-                        const parts = commitData.commit.message.split('\n');
-                        const version = parts.shift();
-                        return {
-                            version: version,
-                            info: parts,
-                        };
-                    });
+                appData.getAppData("GET_COMMITS")
+                .then((result) => {
+                    this.commits = result
                     this.loaded = true
-                    this.commits = newCommits;
-                    if (newCommits.length > 0) {
-                        this.$store.commit('setAppVersion', newCommits[0].version);
-                    }
-                })
-                .catch(error => {
-                    console.error('Error fetching commits:', error);
-                    this.error = error;
-                    return this.error
-                })
+                }).catch((err) => {
+                    console.log(err);
+                    this.error = err
+                    return err
+                });
             }
         },
     },
-    mounted(){
-        this.getCommits()
+    watch: {
+        show(newVal) {
+            if (newVal) this.getCommits();
+        }
     },
 };
 </script>

@@ -5,8 +5,10 @@
   import Navigation from '@/components/Navigation.vue'
   import Error from '@/views/Error.vue'
   import Gradient from './components/Gradient.vue'
-import BetaModal from './components/BetaModal.vue'
+  import BetaModal from './components/BetaModal.vue'
   
+  import { appData } from '@/coreAPI/getData';
+
   export default {
     name:'MainApp',
     data(){
@@ -15,14 +17,23 @@ import BetaModal from './components/BetaModal.vue'
       }
     },
     components: {
-    Loader,
-    TitleBar,
-    Navigation,
-    MusicPlayer,
-    Error,
-    Gradient,
-    BetaModal
-}
+        Loader,
+        TitleBar,
+        Navigation,
+        MusicPlayer,
+        Error,
+        Gradient,
+        BetaModal
+    },
+    mounted(){
+      appData.getAppData("GET_VERSION")
+      .then((result) => {
+        console.log("SERVER VERSION " + result);
+        console.log(result == process.env.PACKAGE_VERSION)
+      }).catch((err) => {
+        console.log(err);
+      });
+    }
   };
 </script>
 
@@ -37,7 +48,7 @@ import BetaModal from './components/BetaModal.vue'
           <button class="btn btn-commits" @click="showModal = !showModal" title="Показать версии">Версии</button>
         </Navigation>
         <section id="page">
-          <BetaModal ref="betaModal" :show="showModal" v-on:close="showModal = false"></BetaModal>
+          <BetaModal ref="betaModal" :show="showModal"></BetaModal>
           <div id="app-sect">
             <RouterView/>
           </div>
