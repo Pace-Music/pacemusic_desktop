@@ -21,6 +21,7 @@ class appData{
                 return {
                     version: version,
                     info: parts,
+                    url: commitData.html_url
                 };
             });
 

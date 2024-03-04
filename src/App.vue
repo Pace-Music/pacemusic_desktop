@@ -29,7 +29,14 @@
       appData.getAppData("GET_VERSION")
       .then((result) => {
         console.log("SERVER VERSION " + result);
-        console.log(result == process.env.PACKAGE_VERSION)
+        console.log("APP VERSION " + process.env.PACKAGE_VERSION)
+
+        if(result == process.env.PACKAGE_VERSION){
+          this.$store.commit('setAppVersion', result);
+          console.log("АКТУАЛЬНАЯ ВЕРСИЯ ПРИЛОЖЕНИЯ")
+        } else{
+          console.log("НАДО ОБНОВИТЬ ПРИЛОЖЕНИЕ")
+        }
       }).catch((err) => {
         console.log(err);
       });

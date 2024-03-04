@@ -4,7 +4,17 @@
         <div v-else class="commit_container">
             <ul v-for="(commit, index) in commits" :key="index">
                 <li class="app-version">
-                    <b>{{ commit.version === `v ${require('/package.json').version}` ? `${commit.version} - Текущая версия` : `${commit.version}` }}</b>
+                    <a :href="commit.url">
+                        <b>
+                            {{ 
+                                commit.version === `v ${require('/package.json').version}` ?
+                                `${commit.version} - Текущая версия` :
+                                (index === 0 && !commit.version.includes("Текущая версия") ?
+                                commit.version + " Новая Версия" :
+                                commit.version)
+                            }}
+                        </b>
+                    </a>
                 </li>
                 <li v-for="message in commit.info" :key="message">
                     <p>{{ message }}</p>
@@ -34,6 +44,7 @@ export default {
             if (this.commits.length === 0) {
                 appData.getAppData("GET_COMMITS")
                 .then((result) => {
+                    console.log(result);
                     this.commits = result
                     this.loaded = true
                 }).catch((err) => {

@@ -3,7 +3,7 @@
         name: "LoaderComponent",
         mounted() {
             setTimeout(() => {
-                console.log("Loading is ending...");
+                console.log("Загрузка завершается или уже завершена");
                 setTimeout(() => {
                     if (this.$refs.preloader) {
                         document.querySelector('.container_loading').classList.add('loading__end');

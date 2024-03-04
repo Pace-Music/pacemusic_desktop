@@ -26,7 +26,7 @@
         </div>
         <div class="bottom">
             <slot></slot>
-            <p><b>Версия: {{ this.$store.getters.getAppVersion }}</b></p>
+            <p><b>Версия: {{ appVersion }}</b></p>
             <div class="user">
                 <RouterLink to="/user" class="user__icon">
                     <img src="https://avatars.dzeninfra.ru/get-zen_doc/271828/pub_6561d83088410d6f4a17dfff_6561ee656e6f8b6285a47d48/scale_1200" alt="User" class="user__icon-img">
@@ -48,14 +48,19 @@
     export default {
         name: "NavigationComp",
         components: {
-    Pace,
-    Review,
-    Favorite,
-},
+            Pace,
+            Review,
+            Favorite,
+        },
         computed: {
-                isCurrentRoute() {
-                    return this.$route.path;
-                }
+            isCurrentRoute() {
+                return this.$route.path;
+            }
+        },
+        data(){
+            return {
+                appVersion: process.env.PACKAGE_VERSION
+            }
         }
 }
 </script>
