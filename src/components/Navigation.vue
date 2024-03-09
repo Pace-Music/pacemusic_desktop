@@ -28,12 +28,12 @@
             <slot></slot>
             <p><b>Версия: {{ appVersion }}</b></p>
             <div class="user">
-                <RouterLink to="/user" class="user__icon">
-                    <img src="https://avatars.dzeninfra.ru/get-zen_doc/271828/pub_6561d83088410d6f4a17dfff_6561ee656e6f8b6285a47d48/scale_1200" alt="User" class="user__icon-img">
+                <RouterLink :to="/users/ + account.id" class="user__icon">
+                    <img :alt="account.name" class="user__icon-img" :src="account.src_img">
                 </RouterLink>
                 <div class="user__data">
-                    <h4 class="user__data-name">Пользователь</h4>
-                    <p class="user__data-song">Песня • Артист</p>
+                    <h4 class="user__data-name">{{ account.name }}</h4>
+                    <p class="user__data-song">{{ account.now_playing }}</p>
                 </div>
             </div>
         </div>
@@ -59,7 +59,13 @@
         },
         data(){
             return {
-                appVersion: process.env.PACKAGE_VERSION
+                appVersion: process.env.PACKAGE_VERSION,
+                account: {
+                    id: this.$store.state.account.id,
+                    name: this.$store.state.account.name,
+                    src_img: this.$store.state.account.src_img,
+                    now_playing: 'Какая-то песня • Артист песни'
+                }
             }
         }
 }
@@ -168,7 +174,7 @@
                     overflow: hidden;
 
                     &:hover{
-                        border: 2.5px dotted #FFF;
+                        border: 2.5px solid #FFF;
                     }
 
                     &-img{
@@ -191,7 +197,9 @@
                     & h4, & p{
                         width: 100%;
                         display: block;
-                        flex: none;
+                        white-space: nowrap;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
                     }
                 }
             }

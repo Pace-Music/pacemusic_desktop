@@ -1,9 +1,9 @@
 'use strict'
 
-import { app, BrowserWindow, ipcMain } from 'electron'
+import { app, BrowserWindow, ipcMain, protocol } from 'electron'
 import { autoUpdater } from 'electron-updater';
 import { createProtocol } from 'vue-cli-plugin-electron-builder/lib'
-import { appData } from '@/coreAPI/getData';
+// import { appData } from '@/coreAPI/getData';
 // import installExtension, { VUEJS3_DEVTOOLS } from 'electron-devtools-installer'
 const isDevelopment = process.env.NODE_ENV !== 'production'
 
@@ -57,9 +57,9 @@ async function createWindow() {
     await win.loadURL(process.env.WEBPACK_DEV_SERVER_URL)
     if (!process.env.IS_TEST) win.webContents.openDevTools()
   } else {
-    createProtocol('app')
+    createProtocol('pacemusic')
     // Load the index.html when not in development
-    win.loadURL('app://./index.html')
+    win.loadURL('pacemusic://./index.html')
   }
 }
 
@@ -82,6 +82,9 @@ app.on('activate', () => {
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
+protocol.registerSchemesAsPrivileged([
+  { scheme: 'pacemusic', privileges: { bypassCSP: true } }
+])
 app.on('ready', async () => {
   if (isDevelopment && !process.env.IS_TEST) {
     // Install Vue Devtools

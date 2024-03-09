@@ -15,7 +15,7 @@ const router = createRouter({
     },   
     {
       path: '/favorite',
-      name: 'Коллекция',
+      name: 'Медиатека',
       component: () => import(/* webpackChunkName: "Favorite" */ '../views/Favorite.vue'),
     }, 
     {
@@ -29,16 +29,28 @@ const router = createRouter({
       component: () => import(/* webpackChunkName: "Setting" */ '../views/Settings.vue'),
     }, 
     {
-      path: '/user',
-      name: '',
-      component: () => import(/* webpackChunkName: "User" */ '../views/User.vue'),
-    }, 
-    {
       path: '/error',
       name: 'Error',
       component: () => import(/* webpackChunkName: "404" */ '../views/Error.vue'),
       meta: { notFound: true }
     },
+
+    {
+      path: '/users/:id',
+      name: '',
+      component: () => import(/* webpackChunkName: "User" */ '../views/User.vue'),
+    }, 
+    // {
+    //   path: '/playlists/:id',
+    //   name: '',
+    //   component: () => import(/* webpackChunkName: "Playlist" */ '../views/Playlist.vue'),
+    // }, 
+    // {
+    //   path: '/albums/:id',
+    //   name: '',
+    //   component: () => import(/* webpackChunkName: "Album" */ '../views/Album.vue'),
+    // },
+
     {
       path: '/:catchAll(.*)',
       redirect: '/error'
@@ -48,7 +60,7 @@ const router = createRouter({
 
 // Example of using a navigation guard to update the document title
 router.beforeEach((to, from, next) => {
-  to.name == '' ? document.title = 'Pace Music' : document.title = 'Pace Music - ' + to.name;
+  document.title = (to.name == '') ? 'Pace Music' : 'Pace Music - ' + to.name;
   next();
 });
 

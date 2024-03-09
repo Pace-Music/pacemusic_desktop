@@ -2,12 +2,11 @@ const { CoreAPI } = require('./index');
 const axios = require("axios");
 
 class appData{
-    getTracks(){
-        CoreAPI.post('/auth/index.php', 'POST', {
-            action: "GET_TRACKS",
-        }, (data) => {
-            return data;
-        });
+    getServerData(path){
+        CoreAPI.getData(path)
+        .then(re => {
+            return re
+        })
     }
     getAppData(method) {
         return axios.get('https://api.github.com/repos/vkidik/pace_music-desktop/commits')
@@ -40,7 +39,7 @@ class appData{
             throw error;
         });
     }
-    
+
 }
 
 module.exports = {

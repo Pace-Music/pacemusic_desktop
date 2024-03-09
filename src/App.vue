@@ -6,6 +6,7 @@
   import Error from '@/views/Error.vue'
   import Gradient from './components/Gradient.vue'
   import BetaModal from './components/BetaModal.vue'
+  import Settings from './views/Settings.vue'
   
   import { appData } from '@/coreAPI/getData';
 
@@ -23,7 +24,8 @@
         MusicPlayer,
         Error,
         Gradient,
-        BetaModal
+        BetaModal,
+        Settings
     },
     mounted(){
       appData.getAppData("GET_VERSION")
@@ -32,7 +34,6 @@
         console.log("APP VERSION " + process.env.PACKAGE_VERSION)
 
         if(result == process.env.PACKAGE_VERSION){
-          this.$store.commit('setAppVersion', result);
           console.log("АКТУАЛЬНАЯ ВЕРСИЯ ПРИЛОЖЕНИЯ")
         } else{
           console.log("НАДО ОБНОВИТЬ ПРИЛОЖЕНИЕ")
@@ -48,7 +49,7 @@
   <Loader></Loader>
   <TitleBar></TitleBar>
   <Gradient></Gradient>
-  <div id="application" v-if="!$route.path.startsWith('/error')">
+  <div id="application" v-if="!$route.path.startsWith('/error') && !$route.path.startsWith('/settings')">
     <div id="main-app">
       <aside class="aside">
         <Navigation>
@@ -65,6 +66,7 @@
     </div>
   </div>
   <Error v-if="$route.path.startsWith('/error')"></Error>
+  <Settings v-if="$route.path.startsWith('/settings')"></Settings>
 </template>
 
 <style lang="scss" scoped>

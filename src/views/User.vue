@@ -1,6 +1,6 @@
 <template>
     <section class="section" id="replay">
-        <h2 class="section-name">Пользователь</h2>
+        <h2 class="section-name">Пользователь {{ this.$route.params.id }}</h2>
     </section>
 </template>
 

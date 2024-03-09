@@ -1,5 +1,15 @@
 <template>
     <div id="sidebar">
+        <div class="settings_router">
+            <RouterLink to="/settings" class="settings_router-link" title="Настройки">
+                <svg class="settings_router-link-item" width="96" height="24" viewBox="0 0 96 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="24" height="24" rx="12" fill="white"/>
+                    <rect x="36" width="24" height="24" rx="12" fill="white"/>
+                    <rect x="72" width="24" height="24" rx="12" fill="white"/>
+                </svg>                    
+            </RouterLink>
+        </div>
+
         <div class="sidebar__btns">
             <button class="sidebar__btns-btn" @click="handleButton('MINIMIZE')">
                 <svg width="72" height="72" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -50,13 +60,34 @@ export default {
         flex: none;
         flex-direction: row;
         align-items: center;
-        justify-content: flex-end;
+        justify-content: space-between;
 
         width: 100%;
         height: 32px;
         user-select: none;
         -webkit-app-region: drag;
         overflow: hidden;
+
+        & .settings_router{
+            width: auto;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            &-link{
+                padding: 0 calc($font-size-main / 1.25);
+                -webkit-app-region: no-drag;
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                &-item{
+                    width: 24px;
+                }
+            }
+        }
 
         & .sidebar__btns{
             height: 100%;
