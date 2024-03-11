@@ -1,6 +1,8 @@
 {
   "name": "pace_music-desktop",
-  "version": "0.1.3",
+  "author": "Vkidik",
+  "description": "App Music",
+  "version": "0.1.4",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -13,6 +15,7 @@
     "server:mongo": "node server",
     "start": "npm-run-all -p server:mongo electron:serve"
   },
+  "main": "background.js",
   "dependencies": {
     "@octokit/core": "^6.0.1",
     "@octokit/rest": "^20.0.2",
@@ -26,14 +29,6 @@
     "vue-router": "^4.0.3",
     "vuex": "^4.0.0",
     "whatwg-fetch": "^3.6.20"
-  },
-  "build": {
-    "appId": "pacemusic.app",
-    "publish": {
-      "provider": "github",
-      "owner": "vkidik",
-      "repo": "pace_music-desktop"
-    }
   },
   "devDependencies": {
     "@babel/core": "^7.12.16",
