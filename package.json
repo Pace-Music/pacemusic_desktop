@@ -2,7 +2,7 @@
   "name": "pace_music-desktop",
   "author": "Vkidik",
   "description": "App Music",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -15,6 +15,14 @@
     "server:mongo": "node server",
     "start": "npm-run-all -p server:mongo electron:serve"
   },
+  "protocols": {
+    "pacemusic": {
+      "name": "Pace Music Protocol",
+      "schemes": [
+        "pacemusic"
+      ]
+    }
+  },  
   "main": "background.js",
   "dependencies": {
     "@octokit/core": "^6.0.1",

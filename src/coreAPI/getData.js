@@ -3,10 +3,7 @@ const axios = require("axios");
 
 class appData{
     getServerData(path){
-        CoreAPI.getData(path)
-        .then(re => {
-            return re
-        })
+        return CoreAPI.getData(path)
     }
     getAppData(method) {
         return axios.get('https://api.github.com/repos/vkidik/pace_music-desktop/commits')

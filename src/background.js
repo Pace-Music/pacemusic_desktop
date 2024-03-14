@@ -1,8 +1,9 @@
 'use strict'
 
-import { app, BrowserWindow, ipcMain } from 'electron'
-import { autoUpdater } from 'electron-updater';
+import { app, BrowserWindow, ipcMain, dialog } from 'electron'
+import { autoUpdater } from 'electron-updater'
 import { createProtocol } from 'vue-cli-plugin-electron-builder/lib'
+import path from 'path'
 
 async function createWindow() {
   const win = new BrowserWindow({
@@ -12,19 +13,19 @@ async function createWindow() {
     height: 800,
     title: "Pace Music",
     titleBarStyle: 'hidden',
+    icon: 'icons/512.png',
     movable: true,
     webPreferences: {
       nodeIntegration: process.env.ELECTRON_NODE_INTEGRATION,
       contextIsolation: !process.env.ELECTRON_NODE_INTEGRATION,
-      devTools: true,
       nodeIntegrationInWorker: true,
       autoplayPolicy: 'no-user-gesture-required',
-      enableRemoteModule: true,
+      enableRemoteModule: process.env.ELECTRON_NODE_INTEGRATION,
       webSecurity : true,
     }
   })
 
-  autoUpdater.autoDownload = false,
+  autoUpdater.autoDownload = true,
   autoUpdater.setFeedURL({
     provider: "github",
     owner: "vkidik",
@@ -51,6 +52,7 @@ async function createWindow() {
     })
   })
 
+  win.webContents.openDevTools()
   ipcMain.on('WINDOW_MINIMIZE', () => {
     win.minimize();
   });
@@ -83,15 +85,19 @@ async function createWindow() {
     if (!process.env.IS_TEST) win.webContents.openDevTools()
   } else {
     createProtocol('pacemusic')
-    // win.loadURL('app://./index.html')
+    win.loadURL('pacemusic://./index.html')
+  }
 
-    win.loadURL(
-      formatUrl({
-        pathname: './index.html',
-        protocol: 'pacemusic',
-        slashes: true
-      })
-    )
+  const gotTheLock = app.requestSingleInstanceLock()
+  if (!gotTheLock) {
+    app.quit()
+  } else {
+    app.on('second-instance', (event, commandLine, workingDirectory) => {
+      if (win) {
+        if (win.isMinimized()) win.restore()
+        win.focus()
+      }
+    })
   }
 }
 
@@ -103,11 +109,22 @@ app.on('window-all-closed', () => {
 app.on("open-url",(event,url)=>{
   console.log(url);
   dialog.showErrorBox("Enter",url);
+  let enterURL = url
+  let $URL = new URL(enterURL);
 })
 app.on('activate', () => {
   if (BrowserWindow.getAllWindows().length === 0) createWindow()
 })
 app.on('ready', async () => {
-  autoUpdater.checkForUpdatesAndNotify();
+  autoUpdater.checkForUpdatesAndNotify()
+
+  if (process.defaultApp) {
+    if (process.argv.length >= 2) {
+      app.setAsDefaultProtocolClient('pacemusic', process.execPath, [path.resolve(process.argv[1])])
+    }
+  } else {
+    app.setAsDefaultProtocolClient('pacemusic')
+  }
+
   createWindow()
 })

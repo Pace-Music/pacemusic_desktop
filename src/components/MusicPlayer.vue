@@ -81,8 +81,8 @@ export default {
             this.changeTrack(newSource);
         }
     },
-    mounted() {
-        const tracks = appData.getServerData('/tracks')
+    async mounted() {
+        const tracks = await appData.getServerData('/tracks')
         console.log(tracks);
         tracks.forEach(track => {
             this.tracks.push(
